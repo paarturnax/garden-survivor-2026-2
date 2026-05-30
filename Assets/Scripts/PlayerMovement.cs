@@ -3,6 +3,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
+    private Animator animator;
+    private SpriteRenderer sr;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+    }
 
     private Vector2 GetMovementFromInput()
     {
@@ -17,6 +25,15 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 movement = GetMovementFromInput();
         transform.Translate(movement);
+        animator.SetBool("isRun", movement.magnitude > 0f);
+        if (movement.x < 0f)
+        {
+            sr.flipX = true;
+        }
+        else
+        {
+            sr.flipX = false;
+        }
     }
     
     void Update()
