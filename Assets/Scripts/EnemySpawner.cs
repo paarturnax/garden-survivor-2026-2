@@ -9,10 +9,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float upDownDistance;
     void Start()
     {
-        //InvokeRepeating()
+        InvokeRepeating(nameof(SpawnEnemy), spawnDelay, spawnDelay);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -21,11 +20,14 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         ZombieMovement enemy = Instantiate(prefab);
+        SetupEnemy(enemy);
     }
 
     private void SetupEnemy(ZombieMovement enemy)
     {
         Vector3 position = getRandomPosition();
+        enemy.transform.position = position;
+        enemy.SetTarget(player);
     }
 
     private Vector3 getRandomPosition()

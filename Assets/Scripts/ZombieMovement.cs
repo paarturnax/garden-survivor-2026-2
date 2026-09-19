@@ -33,8 +33,8 @@ public class ZombieMovement : MonoBehaviour
         }
     }
 
-    public void SetTarget()
+    public void SetTarget(Transform player)
     {
-
+        this.player = player;
     }
 }
