@@ -3,6 +3,7 @@ using UnityEngine;
 public class Farmer : MonoBehaviour
 {
     [SerializeField] private int hp;
+    [SerializeField] private Hp healthUI; 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -21,5 +22,6 @@ public class Farmer : MonoBehaviour
             damage = hp;
         }
         hp -= damage;
+        healthUI.UpdateHp(hp);
     }
 }
