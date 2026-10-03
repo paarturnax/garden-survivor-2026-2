@@ -3,7 +3,8 @@ using UnityEngine;
 public class Farmer : MonoBehaviour
 {
     [SerializeField] private int hp;
-    [SerializeField] private Hp healthUI; 
+    [SerializeField] private Hp healthUI;
+    [SerializeField] private PanelMenu panel; 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -23,5 +24,16 @@ public class Farmer : MonoBehaviour
         }
         hp -= damage;
         healthUI.UpdateHp(hp);
+
+        if (hp == 0)
+        {
+            Die();
+        }
+
+    }
+
+    private void Die()
+    {
+        panel.Show();
     }
 }
