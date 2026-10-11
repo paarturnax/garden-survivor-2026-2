@@ -1172,8 +1172,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1305829820}
   - component: {fileID: 1305829821}
+  - component: {fileID: 1305829822}
   m_Layer: 0
-  m_Name: Weapon 5
+  m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1253,6 +1254,21 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1305829822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305829819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66115d24422aa0d4c96edb06b3d66e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  projectilePrefab: {fileID: 95201830791123158, guid: 07b124835a71cba4aaa0fa84e4696ced,
+    type: 3}
+  _camera: {fileID: 519420031}
 --- !u!1 &1410077635
 GameObject:
   m_ObjectHideFlags: 0
