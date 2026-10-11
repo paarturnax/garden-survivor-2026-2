@@ -15,4 +15,14 @@ public class Projectile : MonoBehaviour
     {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Zombie zombie = other.gameObject.GetComponent<Zombie>();
+        if (zombie != null)
+        {
+            zombie.TakeDamage(damage);
+            Destroy(gameObject);
+        } 
+    }
 }

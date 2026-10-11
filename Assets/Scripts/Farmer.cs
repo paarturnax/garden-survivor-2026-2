@@ -3,8 +3,18 @@ using UnityEngine;
 public class Farmer : MonoBehaviour
 {
     [SerializeField] private int hp;
+    [SerializeField] private int bullets;
     [SerializeField] private Hp healthUI;
-    [SerializeField] private PanelMenu panel; 
+    [SerializeField] private AmmoUI ammoUI;
+    [SerializeField] private PanelMenu panel;
+
+    public int Bullets => bullets;
+
+    private void Start()
+    {
+        healthUI.UpdateHp(hp);
+        ammoUI.UpdateAmmo(bullets);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -12,7 +22,7 @@ public class Farmer : MonoBehaviour
         if (zombie != null)
         {
             TakeDamage(zombie.Damage);
-            Destroy(collision.gameObject);
+            zombie.Die();
         }
     }
 
@@ -29,7 +39,12 @@ public class Farmer : MonoBehaviour
         {
             Die();
         }
+    }
 
+    public void ChangeBullets(int amount)
+    {
+        bullets += amount;
+        ammoUI.UpdateAmmo(bullets);
     }
 
     private void Die()

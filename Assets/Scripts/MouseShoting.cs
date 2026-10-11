@@ -4,8 +4,10 @@ public class MouseShoting : MonoBehaviour
 {
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Camera _camera;
+    [SerializeField] private Transform muzzle;
 
     private SpriteRenderer sr;
+    private SpriteRenderer playerSr;
     private Farmer player;
     private AudioSource audioSource;
 
@@ -14,6 +16,7 @@ public class MouseShoting : MonoBehaviour
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        playerSr = transform.parent.GetComponent<SpriteRenderer>();
         player = GetComponentInParent<Farmer>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -21,6 +24,13 @@ public class MouseShoting : MonoBehaviour
     void Update()
     {
         RotateToMouse();
+
+        if (player.Bullets > 0 && Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+            audioSource.Play();
+            player.ChangeBullets(-1);
+        }
     }
 
     private void RotateToMouse()
@@ -33,12 +43,13 @@ public class MouseShoting : MonoBehaviour
 
         transform.rotation = Quaternion.FromToRotation(Vector3.right, aimDirection);
         sr.flipY = aimDirection.x < 0;
+        playerSr.flipX = aimDirection.x < 0;
 
     }
 
     private void Shoot()
     {
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, muzzle.position, Quaternion.identity);
         projectile.transform.rotation = Quaternion.FromToRotation(Vector3.up, aimDirection);
     }
 
