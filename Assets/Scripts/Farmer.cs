@@ -3,8 +3,24 @@ using UnityEngine;
 public class Farmer : MonoBehaviour
 {
     [SerializeField] private int hp;
+    [SerializeField] private int bullets;
     [SerializeField] private Hp healthUI;
-    [SerializeField] private PanelMenu panel; 
+    [SerializeField] private AmmoUI ammoUI;
+    [SerializeField] private PanelMenu panel;
+
+    public int Bullets => bullets;
+
+    public void ChangeBullets(int amount)
+    {
+        bullets += amount;
+        ammoUI.UpdateAmmo(bullets);
+    }
+
+    private void Start()
+    {
+        ammoUI.UpdateAmmo(bullets);
+        healthUI.UpdateHp(hp);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

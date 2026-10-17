@@ -26,14 +26,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 movement = GetMovementFromInput();
         transform.Translate(movement);
         animator.SetBool("isRun", movement.magnitude > 0f);
-        if (movement.x < 0f)
-        {
-            sr.flipX = true;
-        }
-        else
-        {
-            sr.flipX = false;
-        }
+        
     }
     
     void Update()
