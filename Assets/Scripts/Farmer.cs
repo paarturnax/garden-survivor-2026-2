@@ -45,7 +45,6 @@ public class Farmer : MonoBehaviour
         {
             Die();
         }
-
     }
 
     private void Die()
