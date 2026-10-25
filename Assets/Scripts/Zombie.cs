@@ -15,6 +15,7 @@ public class Zombie : MonoBehaviour
     {
         hp = maxHp;
         healthUI.UpdateHP(hp, maxHp);
+        animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(int dmg)
